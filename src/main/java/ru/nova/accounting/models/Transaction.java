@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Objects;
 
 @Entity
@@ -18,7 +18,7 @@ public class Transaction implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
-    private Date date;
+    private Calendar date;
     private String type;
     private int value;
     private String comment;

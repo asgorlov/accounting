@@ -4,22 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.nova.accounting.exeptions.TransactionNotFoundException;
 import ru.nova.accounting.models.Transaction;
-import ru.nova.accounting.repositories.TransactionRepo;
+import ru.nova.accounting.repositories.TransactionRepository;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
 public class TransactionService {
-    private final TransactionRepo transactionRepo;
+    private final TransactionRepository transactionRepo;
 
     @Autowired
-    public TransactionService(TransactionRepo transactionRepo) {
+    public TransactionService(TransactionRepository transactionRepo) {
         this.transactionRepo = transactionRepo;
     }
 
-    public void saveTransaction(Transaction transaction) {
-        transactionRepo.save(transaction);
+    public Transaction saveTransaction(Transaction transaction) {
+        return transactionRepo.save(transaction);
     }
 
     public Transaction getTransaction(Long id) {
@@ -42,9 +42,9 @@ public class TransactionService {
                 .orElseThrow(() -> new TransactionNotFoundException("Transactions not found"));
     }
 
-    public List<Transaction> findTransactions(String type, Date date) {
+    public List<Transaction> findTransactions(String type, Calendar date) {
         return transactionRepo
-                .findByDate(type, date)
+                .findByTypeAndDate(type, date)
                 .orElseThrow(() -> new TransactionNotFoundException("Transactions not found"));
     }
 }
