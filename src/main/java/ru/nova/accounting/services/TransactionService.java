@@ -22,6 +22,14 @@ public class TransactionService {
         return transactionRepo.save(transaction);
     }
 
+    public Transaction updateTransaction(Transaction transaction) {
+        if (!transactionRepo.existsById(transaction.getId())) {
+            throw new TransactionNotFoundException("Transaction not found");
+        }
+
+        return saveTransaction(transaction);
+    }
+
     public Transaction getTransaction(Long id) {
         return transactionRepo
                 .findById(id)
@@ -30,6 +38,10 @@ public class TransactionService {
 
     public void removeTransaction(Long id) {
         transactionRepo.deleteById(id);
+    }
+
+    public void removeAllTransactions() {
+        transactionRepo.deleteAll();
     }
 
     public List<Transaction> getAllTransactions() {

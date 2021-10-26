@@ -3,12 +3,14 @@ package ru.nova.accounting.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Calendar;
 import java.util.Objects;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class SearchFilter {
     private Calendar date;

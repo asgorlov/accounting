@@ -3,6 +3,7 @@ package ru.nova.accounting.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class Transaction implements Serializable {
     @Id

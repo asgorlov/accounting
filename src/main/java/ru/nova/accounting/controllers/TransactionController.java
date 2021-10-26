@@ -38,13 +38,19 @@ public class TransactionController {
 
     @PutMapping("/update")
     public ResponseEntity<Transaction> updateTransaction(@RequestBody Transaction transaction) {
-        Transaction updatedTransaction = transactionService.saveTransaction(transaction);
+        Transaction updatedTransaction = transactionService.updateTransaction(transaction);
         return new ResponseEntity<>(updatedTransaction, HttpStatus.OK);
     }
 
-    @DeleteMapping("/remove/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> removeTransaction(@PathVariable("id") Long id) {
         transactionService.removeTransaction(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/all")
+    public ResponseEntity<?> removeAllTransactions() {
+        transactionService.removeAllTransactions();
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
