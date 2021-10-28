@@ -11,6 +11,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/transaction")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TransactionController {
     private final TransactionService transactionService;
 
